@@ -15,7 +15,7 @@ import {
   providedIn: 'root'
 })
 export class UserService {
-  private USERS_URL = 'http://localhost:3000/users';
+  private USERS_URL = 'http://localhost:8000/getData';
   constructor(private http: HttpClient) {}
   getUsers() {
     return this.http.get < User[] > (this.USERS_URL).pipe(
