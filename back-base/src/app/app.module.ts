@@ -4,7 +4,6 @@ import {
 import {
   NgModule
 } from '@angular/core';
-
 import {
   AppRoutingModule
 } from './app-routing.module';
@@ -18,17 +17,20 @@ import {
   StoreModule
 } from '@ngrx/store';
 import {
-  UserReducer
-} from './reducers/user.reducers';
-import {
   EffectsModule
 } from '@ngrx/effects';
 import {
-  UserEffects
-} from './effects/user.effects';
-import {
   HttpClientModule
 } from '@angular/common/http';
+import {
+  MatSelectModule
+} from '@angular/material/select';
+import {
+  WeatherReducer
+} from './reducers/weather.reducers';
+import {
+  WeatherEffects
+} from './effects/weather.effects';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,10 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot({
-      users: UserReducer
+      weather: WeatherReducer
     }),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([WeatherEffects]),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

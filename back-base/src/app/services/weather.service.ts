@@ -5,20 +5,20 @@ import {
   HttpClient
 } from '@angular/common/http';
 import {
+  Weather
+} from '../models/weather.model';
+import {
   delay
 } from 'rxjs/operators';
-import {
-  User
-} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
-  private USERS_URL = 'http://localhost:8000/getData';
+export class WeatherService {
+  private USERS_URL = 'http://localhost:8000/getWeatherData';
   constructor(private http: HttpClient) {}
-  getUsers() {
-    return this.http.get < User[] > (this.USERS_URL).pipe(
+  getWeatherData() {
+    return this.http.get < Weather > (this.USERS_URL).pipe(
       delay(500)
     );
   }

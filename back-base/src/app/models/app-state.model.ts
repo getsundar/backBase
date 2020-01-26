@@ -1,9 +1,10 @@
 import {
-  UsersState
-} from '../reducers/user.reducers';
+  WeatherState
+} from '../reducers/weather.reducers';
 
 export interface AppState {
-  readonly users: UsersState;
+  weather: WeatherState;
 }
 
-export const selectUsers = (state: AppState) => state.users;
+// export const currentWeatherDetails = (weather: AppState) => weather.weather;
+

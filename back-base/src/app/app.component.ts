@@ -6,17 +6,17 @@ import {
   Observable
 } from 'rxjs';
 import {
-  User
-} from './models/user.model';
-import {
   AppState
 } from './models/app-state.model';
 import {
   Store
 } from '@ngrx/store';
 import {
-  LoadUserAction
-} from './actions/user.actions';
+  Weather
+} from './models/weather.model';
+import {
+  LoadWeatherAction
+} from './actions/weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -25,11 +25,17 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'back-base';
-  users$: Observable < Array < User > > ;
+  citySelected = '';
+  weatherDetais$: Observable < Weather > ;
+  cities = ['London', 'Amsterdam'];
   constructor(private store: Store < AppState > ) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(new LoadUserAction());
-    this.users$ = this.store.select(store => store.users.users);
+  ngOnInit() {
+    this.store.dispatch(new LoadWeatherAction());
+    this.weatherDetais$ = this.store.select(store => store.weather.weather);
+    this.weatherDetais$.subscribe((data) => {});
+  }
+  onCityChanged() {
+
   }
 }
