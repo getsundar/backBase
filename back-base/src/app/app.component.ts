@@ -8,10 +8,12 @@ import {
   forkJoin
 } from 'rxjs';
 import {
-  AppState
+  AppState,
+  selectWeatherDetails
 } from './models/app-state.model';
 import {
-  Store
+  Store,
+  createSelector
 } from '@ngrx/store';
 import {
   Weather
@@ -22,6 +24,12 @@ import {
 import {
   HttpClient
 } from '@angular/common/http';
+import {
+  WeatherState
+} from './reducers/weather.reducers';
+import {
+  CityWeather
+} from './models/city-weather.model';
 
 @Component({
   selector: 'app-root',
@@ -31,17 +39,14 @@ import {
 export class AppComponent implements OnInit {
   title = 'back-base';
   citySelected = '';
-  weatherDetais$: Observable < Weather > ;
+  weatherDetais$: Observable < CityWeather > ;
   concatinatedData: Observable < Array < Weather > > ;
   cities = ['London', 'Amsterdam'];
-  displayedColumns: string[] = ['name'];
-
-  dataSource;
+  displayedColumns: string[] = ['name', 'avgTemp', 'windStrength'];
   constructor(private store: Store < AppState > , private http: HttpClient) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
-    this.weatherDetais$ = this.store.select(store => store.weather.weather);
-    this.weatherDetais$.subscribe((data) => {});
+    this.weatherDetais$ = this.store.select(selectWeatherDetails);
   };
 }

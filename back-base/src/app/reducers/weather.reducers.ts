@@ -15,7 +15,7 @@ export interface WeatherState {
 
 const initialState: WeatherState = {
   weather: undefined,
-  loading: false,
+  loading: true,
   error: undefined
 };
 
