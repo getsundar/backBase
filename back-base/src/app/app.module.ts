@@ -31,6 +31,9 @@ import {
 import {
   WeatherEffects
 } from './effects/weather.effects';
+import {
+  MatTableModule
+} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,8 @@ import {
       weather: WeatherReducer
     }),
     EffectsModule.forRoot([WeatherEffects]),
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

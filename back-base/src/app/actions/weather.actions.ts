@@ -16,7 +16,7 @@ export class LoadWeatherAction implements Action {
 }
 export class LoadWeatherSuccessAction implements Action {
   readonly type = WeatherActionTypes.LOAD_WEATHER_DATA_SUCCESS;
-  constructor(public payload: Weather) {}
+  constructor(public payload: Weather[]) {}
 }
 export class LoadWeatherFailureAction implements Action {
   readonly type = WeatherActionTypes.LOAD_WEATHER_DATA_FAILURE;
