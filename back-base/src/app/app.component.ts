@@ -30,6 +30,9 @@ import {
 import {
   CityWeather
 } from './models/city-weather.model';
+import {
+  ColumnProp
+} from './models/column-prop.model';
 
 @Component({
   selector: 'app-root',
@@ -42,17 +45,21 @@ export class AppComponent implements OnInit {
   weatherDetails$: Observable < CityWeather > ;
   concatinatedData: Observable < Array < Weather > > ;
   cities = ['London', 'Amsterdam'];
-  displayedColumns: string[] = ['name', 'avgTemp', 'windStrength'];
+  displayedColumns: ColumnProp[] = [{
+    headerName: 'Name',
+    prop: 'name'
+  }, {
+    headerName: 'Average Temperature',
+    prop: 'avgTemp'
+  }, {
+    headerName: 'Wind Strength',
+    prop: 'windStrength'
+  }];
   weatherDetailsLoaded = false;
   constructor(private store: Store < AppState > , private http: HttpClient) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
     this.weatherDetails$ = this.store.select(selectWeatherDetails);
-    // this.weatherDetails$.subscribe((data) => {
-    //   if (data !== undefined) {
-    //     this.weatherDetailsLoaded = true;
-    //   }
-    // });
   }
 }

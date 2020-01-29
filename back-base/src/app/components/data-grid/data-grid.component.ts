@@ -6,6 +6,9 @@ import {
 import {
   Observable
 } from 'rxjs';
+import {
+  ColumnProp
+} from 'src/app/models/column-prop.model';
 
 @Component({
   selector: 'app-data-grid',
@@ -14,10 +17,12 @@ import {
 })
 export class DataGridComponent implements OnInit {
   @Input() dataToRender$: Observable < any > ;
-  @Input() displayedColumns: string[];
-
+  @Input() displayedColumns: ColumnProp[];
+  columnsToDisplay = [];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.displayedColumns.forEach(column => this.columnsToDisplay.push(column.prop));
+  }
 
 }
