@@ -37,6 +37,12 @@ import {
 import {
   DataGridComponent
 } from './components/data-grid/data-grid.component';
+import {
+  HourlyWeatherReducer
+} from './reducers/hourly-weather.reducers';
+import {
+  HourlyWeatherEffects
+} from './effects/hourly-weather.effects';
 
 
 @NgModule({
@@ -50,9 +56,10 @@ import {
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot({
-      weather: WeatherReducer
+      weather: WeatherReducer,
+      hourlyWeather: HourlyWeatherReducer
     }),
-    EffectsModule.forRoot([WeatherEffects]),
+    EffectsModule.forRoot([WeatherEffects, HourlyWeatherEffects]),
     MatSelectModule,
     MatTableModule
   ],

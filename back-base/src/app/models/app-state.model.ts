@@ -2,6 +2,9 @@ import {
   WeatherState
 } from '../reducers/weather.reducers';
 import {
+  HourlyWeatherState
+} from '../reducers/hourly-weather.reducers';
+import {
   createSelector
 } from '@ngrx/store';
 import {
@@ -10,6 +13,7 @@ import {
 
 export interface AppState {
   weather: WeatherState;
+  hourlyWeather: HourlyWeatherState;
 }
 
 export const currentWeatherDetails = (state: AppState) => state.weather;

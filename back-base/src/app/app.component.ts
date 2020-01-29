@@ -3,17 +3,14 @@ import {
   OnInit
 } from '@angular/core';
 import {
-  Observable,
-  concat,
-  forkJoin
+  Observable
 } from 'rxjs';
 import {
   AppState,
   selectWeatherDetails
 } from './models/app-state.model';
 import {
-  Store,
-  createSelector
+  Store
 } from '@ngrx/store';
 import {
   Weather
@@ -22,17 +19,14 @@ import {
   LoadWeatherAction
 } from './actions/weather.actions';
 import {
-  HttpClient
-} from '@angular/common/http';
-import {
-  WeatherState
-} from './reducers/weather.reducers';
-import {
   CityWeather
 } from './models/city-weather.model';
 import {
   ColumnProp
 } from './models/column-prop.model';
+import {
+  LoadHourlyWeatherAction
+} from './actions/hourly-weather.actions';
 
 @Component({
   selector: 'app-root',
@@ -55,11 +49,11 @@ export class AppComponent implements OnInit {
     headerName: 'Wind Strength',
     prop: 'windStrength'
   }];
-  weatherDetailsLoaded = false;
-  constructor(private store: Store < AppState > , private http: HttpClient) {}
+  constructor(private store: Store < AppState > ) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
+    this.store.dispatch(new LoadHourlyWeatherAction());
     this.weatherDetails$ = this.store.select(selectWeatherDetails);
   }
 }
