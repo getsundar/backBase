@@ -39,14 +39,20 @@ import {
 export class AppComponent implements OnInit {
   title = 'back-base';
   citySelected = '';
-  weatherDetais$: Observable < CityWeather > ;
+  weatherDetails$: Observable < CityWeather > ;
   concatinatedData: Observable < Array < Weather > > ;
   cities = ['London', 'Amsterdam'];
   displayedColumns: string[] = ['name', 'avgTemp', 'windStrength'];
+  weatherDetailsLoaded = false;
   constructor(private store: Store < AppState > , private http: HttpClient) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
-    this.weatherDetais$ = this.store.select(selectWeatherDetails);
-  };
+    this.weatherDetails$ = this.store.select(selectWeatherDetails);
+    // this.weatherDetails$.subscribe((data) => {
+    //   if (data !== undefined) {
+    //     this.weatherDetailsLoaded = true;
+    //   }
+    // });
+  }
 }

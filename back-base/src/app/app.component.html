@@ -8,22 +8,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field> -->
-
-  <table mat-table [dataSource]="weatherDetais$" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-    <ng-container matColumnDef="avgTemp">
-      <th mat-header-cell *matHeaderCellDef>Average Temperature</th>
-      <td mat-cell *matCellDef="let element"> {{element.avgTemp}} </td>
-    </ng-container>
-    <ng-container matColumnDef="windStrength">
-      <th mat-header-cell *matHeaderCellDef>Wind Strength</th>
-      <td mat-cell *matCellDef="let element"> {{element.windStrength}} </td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  <app-data-grid [dataToRender$]='weatherDetails$ | async' [displayedColumns]='displayedColumns'>
+  </app-data-grid>
 </div>
 <router-outlet></router-outlet>

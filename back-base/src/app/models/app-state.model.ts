@@ -7,18 +7,12 @@ import {
 import {
   CityWeather
 } from './city-weather.model';
-import {
-  mapChildrenIntoArray
-} from '@angular/router/src/url_tree';
 
 export interface AppState {
   weather: WeatherState;
 }
 
-
 export const currentWeatherDetails = (state: AppState) => state.weather;
-
-
 export const selectWeatherDetails = createSelector(
   currentWeatherDetails,
   (allCityWeather: WeatherState) => {

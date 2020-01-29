@@ -34,10 +34,15 @@ import {
 import {
   MatTableModule
 } from '@angular/material/table';
+import {
+  DataGridComponent
+} from './components/data-grid/data-grid.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DataGridComponent
   ],
   imports: [
     BrowserModule,
