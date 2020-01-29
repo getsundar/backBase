@@ -7,7 +7,8 @@ import {
 } from 'rxjs';
 import {
   AppState,
-  selectWeatherDetails
+  selectWeatherDetails,
+  currentWeatherDetails
 } from './models/app-state.model';
 import {
   Store
@@ -49,11 +50,16 @@ export class AppComponent implements OnInit {
     headerName: 'Wind Strength',
     prop: 'windStrength'
   }];
+  dataLoading = false;
   constructor(private store: Store < AppState > ) {}
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
     this.store.dispatch(new LoadHourlyWeatherAction());
     this.weatherDetails$ = this.store.select(selectWeatherDetails);
+    this.store.select('weather').subscribe((weatherData) => {
+      this.dataLoading = weatherData.loading;
+    });
+
   }
 }

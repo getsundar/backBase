@@ -25,7 +25,7 @@ export const selectWeatherDetails = createSelector(
       allCityWeather.weather.forEach(element => {
         const obj: CityWeather = {
           name: element.name,
-          avgTemp: ((element.main.temp_max + element.main.temp_min) / 2),
+          avgTemp: ((element.main.temp_max + element.main.temp_min) / 2).toFixed(2),
           windStrength: element.wind.speed
         };
         weatherDetailsArray.push(obj);

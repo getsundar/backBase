@@ -23,6 +23,7 @@ export class DataGridComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns.forEach(column => this.columnsToDisplay.push(column.prop));
+    this.columnsToDisplay.push('actions');
   }
 
 }

@@ -43,8 +43,12 @@ import {
 import {
   HourlyWeatherEffects
 } from './effects/hourly-weather.effects';
-
-
+import {
+  MatButtonModule
+} from '@angular/material/button';
+import {
+  MatProgressBarModule
+} from '@angular/material/progress-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +65,9 @@ import {
     }),
     EffectsModule.forRoot([WeatherEffects, HourlyWeatherEffects]),
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
