@@ -9,3 +9,14 @@
   width: 90%;
   height: 50%;
 }
+
+.table-container {
+  max-height: 400px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.backBtn {
+  float: right;
+  margin: 10px;
+}

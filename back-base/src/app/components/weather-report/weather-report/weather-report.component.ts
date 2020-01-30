@@ -37,6 +37,7 @@ import {
 export class WeatherReportComponent implements OnInit {
   weatherDetails$: Observable < CityWeather > ;
   hourlyWeatherDetails$: Observable < any > ;
+  hourlyWeatherShown = false;
   displayedColumns: ColumnProp[] = [{
     headerName: 'Name',
     prop: 'name'
@@ -68,10 +69,16 @@ export class WeatherReportComponent implements OnInit {
     });
   }
   onShowingHourlyDetails(cityNameToGetDetails) {
+    this.dataLoading = true;
     this.store.dispatch(new LoadHourlyWeatherAction({
       cityName: cityNameToGetDetails
     }));
     this.hourlyWeatherDetails$ = this.store.select(hourlyWeatherDetails);
+    this.store.select('hourlyWeather').subscribe((hourlyWeatherData) => {
+      this.dataLoading = hourlyWeatherData.loading;
+      if (!this.dataLoading) {
+        this.hourlyWeatherShown = true;
+      }
+    });
   }
-
 }

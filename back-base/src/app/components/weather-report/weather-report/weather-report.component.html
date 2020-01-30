@@ -2,10 +2,16 @@
 <div class="container">
   <div class="center">
     <app-data-grid [dataToRender$]='weatherDetails$ | async' [displayedColumns]='displayedColumns'
-      (showHourlyDetails)="onShowingHourlyDetails($event)" [showAction]="true"></app-data-grid>
-
-    <app-data-grid [dataToRender$]='hourlyWeatherDetails$ | async' [displayedColumns]='displayedHourlyColumns'
-      [showAction]="false">
+      (showHourlyDetails)="onShowingHourlyDetails($event)" [showAction]="true" *ngIf="!hourlyWeatherShown">
     </app-data-grid>
+    <div *ngIf="hourlyWeatherShown">
+      <div class="table-container">
+        <app-data-grid [dataToRender$]='hourlyWeatherDetails$ | async' [displayedColumns]='displayedHourlyColumns'
+          [showAction]="false">
+        </app-data-grid>
+      </div>
+      <button mat-raised-button color="primary" (click)="hourlyWeatherShown=false" class="backBtn">Back</button>
+    </div>
+
   </div>
 </div>

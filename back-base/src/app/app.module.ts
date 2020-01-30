@@ -53,6 +53,9 @@ import {
 import {
   WeatherReportComponent
 } from './components/weather-report/weather-report/weather-report.component';
+import {
+  MatPaginatorModule
+} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +75,8 @@ import {
     MatSelectModule,
     MatTableModule,
     MatButtonModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
