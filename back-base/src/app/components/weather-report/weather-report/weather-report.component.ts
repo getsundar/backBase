@@ -26,9 +26,9 @@ import {
   ColumnProp
 } from 'src/app/models/column-prop.model';
 import {
-  HourlyWeather
-} from 'src/app/models/hourly-weather.model';
-
+  WEATHER_COLUMNS,
+  HOURLY_WEATHER_COLUMNS
+} from 'src/assets/columns-to-render';
 @Component({
   selector: 'app-weather-report',
   templateUrl: './weather-report.component.html',
@@ -38,26 +38,8 @@ export class WeatherReportComponent implements OnInit {
   weatherDetails$: Observable < CityWeather > ;
   hourlyWeatherDetails$: Observable < any > ;
   hourlyWeatherShown = false;
-  displayedColumns: ColumnProp[] = [{
-    headerName: 'Name',
-    prop: 'name'
-  }, {
-    headerName: 'Average Temperature',
-    prop: 'avgTemp'
-  }, {
-    headerName: 'Wind Strength',
-    prop: 'windStrength'
-  }];
-  displayedHourlyColumns: ColumnProp[] = [{
-    headerName: 'Time Stamp',
-    prop: 'timeStamp'
-  }, {
-    headerName: 'Average Temperature',
-    prop: 'avgTemp'
-  }, {
-    headerName: 'Wind Strength',
-    prop: 'windStrength'
-  }];
+  displayedWeatherColumns: ColumnProp[] = WEATHER_COLUMNS;
+  displayedHourlyColumns: ColumnProp[] = HOURLY_WEATHER_COLUMNS;
   dataLoading = false;
   constructor(private store: Store < AppState > ) {}
 
