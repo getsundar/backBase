@@ -14,7 +14,7 @@ import {
 export class HourlyWeatherService {
 
   constructor(private http: HttpClient) {}
-  getHourlyWeatherDetails() {
+  getHourlyWeatherDetails(cityDetails) {
     return this.http.get < HourlyWeather > ('http://localhost:9000/getHourlyWeatherData');
   }
 }

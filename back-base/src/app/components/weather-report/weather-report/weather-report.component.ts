@@ -47,11 +47,15 @@ export class WeatherReportComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
-    this.store.dispatch(new LoadHourlyWeatherAction());
     this.weatherDetails$ = this.store.select(selectWeatherDetails);
     this.store.select('weather').subscribe((weatherData) => {
       this.dataLoading = weatherData.loading;
     });
+  }
+  onShowingHourlyDetails(cityNameToGetDetails) {
+    this.store.dispatch(new LoadHourlyWeatherAction({
+      cityName: cityNameToGetDetails
+    }));
   }
 
 }

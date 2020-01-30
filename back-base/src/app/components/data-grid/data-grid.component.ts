@@ -1,7 +1,9 @@
 import {
   Component,
   OnInit,
-  Input
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import {
   Observable
@@ -18,12 +20,17 @@ import {
 export class DataGridComponent implements OnInit {
   @Input() dataToRender$: Observable < any > ;
   @Input() displayedColumns: ColumnProp[];
+  @Output() showHourlyDetails: EventEmitter < any > = new EventEmitter();
+
   columnsToDisplay = [];
   constructor() {}
 
   ngOnInit() {
     this.displayedColumns.forEach(column => this.columnsToDisplay.push(column.prop));
     this.columnsToDisplay.push('actions');
+  }
+  onShowingHourlyDetails(cityToShow) {
+    this.showHourlyDetails.emit(cityToShow);
   }
 
 }

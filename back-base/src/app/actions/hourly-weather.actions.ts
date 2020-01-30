@@ -12,6 +12,7 @@ export enum HourlyWeatherActionTypes {
 }
 export class LoadHourlyWeatherAction implements Action {
   readonly type = HourlyWeatherActionTypes.LOAD_HOURLY_WEATHER_DATA;
+  constructor(public payload: any) {}
 }
 export class LoadHourlyWeatherSuccessAction implements Action {
   readonly type = HourlyWeatherActionTypes.LOAD_HOURLY_WEATHER_DATA_SUCCESS;

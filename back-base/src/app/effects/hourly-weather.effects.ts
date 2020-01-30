@@ -9,7 +9,8 @@ import {
 import {
   map,
   mergeMap,
-  catchError
+  catchError,
+  switchMap
 } from 'rxjs/operators';
 import {
   of
@@ -30,8 +31,8 @@ export class HourlyWeatherEffects {
   @Effect() loadHourlyWeather$ = this.actions$
     .pipe(
       ofType < LoadHourlyWeatherAction > (HourlyWeatherActionTypes.LOAD_HOURLY_WEATHER_DATA),
-      mergeMap(
-        () => this.hourlyWeatherService.getHourlyWeatherDetails()
+      switchMap(
+        (action) => this.hourlyWeatherService.getHourlyWeatherDetails(action.payload)
         .pipe(
           map(data => {
             return new LoadHourlyWeatherSuccessAction(data);
