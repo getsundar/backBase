@@ -34,9 +34,7 @@ import {
 import {
   MatTableModule
 } from '@angular/material/table';
-import {
-  DataGridComponent
-} from './components/data-grid/data-grid.component';
+
 import {
   HourlyWeatherReducer
 } from './reducers/hourly-weather.reducers';
@@ -49,10 +47,15 @@ import {
 import {
   MatProgressBarModule
 } from '@angular/material/progress-bar';
+import {
+  DataGridComponent
+} from './components/data-grid/data-grid.component';
+import { WeatherReportComponent } from './components/weather-report/weather-report/weather-report.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DataGridComponent
+    DataGridComponent,
+    WeatherReportComponent
   ],
   imports: [
     BrowserModule,
