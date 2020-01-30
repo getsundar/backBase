@@ -17,8 +17,8 @@ import {
 export class WeatherService {
   constructor(private http: HttpClient) {}
   getWeatherData() {
-    const url1 = this.http.get < Weather > ('http://localhost:9000/getWeatherData');
-    const url2 = this.http.get < Weather > ('http://localhost:9000/getWeatherData');
+    const url1 = this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=London');
+    const url2 = this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=Amsterdam');
     return forkJoin([url1, url2]);
   }
 }

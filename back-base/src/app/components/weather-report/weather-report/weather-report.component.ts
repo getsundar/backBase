@@ -7,7 +7,8 @@ import {
 } from '@ngrx/store';
 import {
   AppState,
-  selectWeatherDetails
+  selectWeatherDetails,
+  hourlyWeatherDetails
 } from 'src/app/models/app-state.model';
 import {
   LoadWeatherAction
@@ -24,6 +25,9 @@ import {
 import {
   ColumnProp
 } from 'src/app/models/column-prop.model';
+import {
+  HourlyWeather
+} from 'src/app/models/hourly-weather.model';
 
 @Component({
   selector: 'app-weather-report',
@@ -32,9 +36,20 @@ import {
 })
 export class WeatherReportComponent implements OnInit {
   weatherDetails$: Observable < CityWeather > ;
+  hourlyWeatherDetails$: Observable < any > ;
   displayedColumns: ColumnProp[] = [{
     headerName: 'Name',
     prop: 'name'
+  }, {
+    headerName: 'Average Temperature',
+    prop: 'avgTemp'
+  }, {
+    headerName: 'Wind Strength',
+    prop: 'windStrength'
+  }];
+  displayedHourlyColumns: ColumnProp[] = [{
+    headerName: 'Time Stamp',
+    prop: 'timeStamp'
   }, {
     headerName: 'Average Temperature',
     prop: 'avgTemp'
@@ -56,6 +71,7 @@ export class WeatherReportComponent implements OnInit {
     this.store.dispatch(new LoadHourlyWeatherAction({
       cityName: cityNameToGetDetails
     }));
+    this.hourlyWeatherDetails$ = this.store.select(hourlyWeatherDetails);
   }
 
 }
