@@ -56,6 +56,9 @@ import {
 import {
   MatPaginatorModule
 } from '@angular/material/paginator';
+import {
+  MatCardModule
+} from '@angular/material/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +79,8 @@ import {
     MatTableModule,
     MatButtonModule,
     MatProgressBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,12 +14,12 @@ export interface WeatherState {
 }
 
 const initialState: WeatherState = {
-  weather: undefined,
+  weather: [],
   loading: true,
-  error: undefined
+  error: null
 };
 
-export function WeatherReducer(state: WeatherState = initialState, action: WeatherAction) {
+export function WeatherReducer(state: WeatherState, action: WeatherAction) {
   switch (action.type) {
     case WeatherActionTypes.LOAD_WEATHER_DATA:
       return {

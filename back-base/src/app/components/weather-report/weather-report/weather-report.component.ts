@@ -1,6 +1,7 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import {
   Store
@@ -34,33 +35,40 @@ import {
   templateUrl: './weather-report.component.html',
   styleUrls: ['./weather-report.component.scss']
 })
-export class WeatherReportComponent implements OnInit {
+export class WeatherReportComponent implements OnInit, OnDestroy {
   weatherDetails$: Observable < CityWeather > ;
   hourlyWeatherDetails$: Observable < any > ;
   hourlyWeatherShown = false;
   displayedWeatherColumns: ColumnProp[] = WEATHER_COLUMNS;
   displayedHourlyColumns: ColumnProp[] = HOURLY_WEATHER_COLUMNS;
   dataLoading = false;
+  citySelected = '';
+  weatherSubscription;
+  hourlyWeatherSubscription;
   constructor(private store: Store < AppState > ) {}
-
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
     this.weatherDetails$ = this.store.select(selectWeatherDetails);
-    this.store.select('weather').subscribe((weatherData) => {
+    this.weatherSubscription = this.store.select('weather').subscribe((weatherData) => {
       this.dataLoading = weatherData.loading;
     });
   }
   onShowingHourlyDetails(cityNameToGetDetails) {
+    this.citySelected = cityNameToGetDetails;
     this.dataLoading = true;
     this.store.dispatch(new LoadHourlyWeatherAction({
-      cityName: cityNameToGetDetails
+      cityName: this.citySelected
     }));
     this.hourlyWeatherDetails$ = this.store.select(hourlyWeatherDetails);
-    this.store.select('hourlyWeather').subscribe((hourlyWeatherData) => {
+    this.hourlyWeatherSubscription = this.store.select('hourlyWeather').subscribe((hourlyWeatherData) => {
       this.dataLoading = hourlyWeatherData.loading;
       if (!this.dataLoading) {
         this.hourlyWeatherShown = true;
       }
     });
+  }
+  ngOnDestroy(): void {
+    this.weatherSubscription.unsubscribe();
+    this.hourlyWeatherSubscription.unsubscribe();
   }
 }

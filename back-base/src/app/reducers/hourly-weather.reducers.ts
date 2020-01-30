@@ -13,9 +13,9 @@ export interface HourlyWeatherState {
 }
 
 const initialState: HourlyWeatherState = {
-  hourlyWeather: undefined,
+  hourlyWeather: null,
   loading: true,
-  error: undefined
+  error: null
 };
 
 export function HourlyWeatherReducer(state: HourlyWeatherState = initialState, action: HourlyWeatherAction) {
