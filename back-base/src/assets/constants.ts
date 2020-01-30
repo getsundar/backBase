@@ -24,3 +24,5 @@ export const HOURLY_WEATHER_COLUMNS: ColumnProp[] = [{
   headerName: 'Wind Strength',
   prop: 'windStrength'
 }];
+
+export const CITY_NAMES = ['London', 'Amsterdam', 'Berlin', 'Paris', 'Rome'];

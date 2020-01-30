@@ -28,7 +28,7 @@ import {
 import {
   WEATHER_COLUMNS,
   HOURLY_WEATHER_COLUMNS
-} from 'src/assets/columns-to-render';
+} from 'src/assets/constants';
 @Component({
   selector: 'app-weather-report',
   templateUrl: './weather-report.component.html',

@@ -10,15 +10,19 @@ import {
 import {
   forkJoin
 } from 'rxjs';
-
+import {
+  CITY_NAMES
+} from 'src/assets/constants';
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
   constructor(private http: HttpClient) {}
   getWeatherData() {
-    const url1 = this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=London');
-    const url2 = this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=Amsterdam');
-    return forkJoin([url1, url2]);
+    const citiesToLoad = [];
+    CITY_NAMES.forEach((city) => {
+      citiesToLoad.push(this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=' + city));
+    });
+    return forkJoin(citiesToLoad);
   }
 }
