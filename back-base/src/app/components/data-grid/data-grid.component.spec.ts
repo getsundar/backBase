@@ -7,6 +7,12 @@ import {
 import {
   DataGridComponent
 } from './data-grid.component';
+import {
+  MatTableModule
+} from '@angular/material/table';
+import {
+  MatProgressBarModule
+} from '@angular/material/progress-bar';
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent;
@@ -14,7 +20,11 @@ describe('DataGridComponent', () => {
 
   beforeEach(async (() => {
     TestBed.configureTestingModule({
-        declarations: [DataGridComponent]
+        declarations: [DataGridComponent],
+        imports: [
+          MatTableModule,
+          MatProgressBarModule
+        ]
       })
       .compileComponents();
   }));

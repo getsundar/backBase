@@ -17,6 +17,7 @@ import {
   CityHourlyWeather
 } from 'src/app/models/city-hourly-weather.model';
 
+// to parse data for the grids from the complete JSON (Weather report)
 export const currentWeatherDetails = (state: AppState) => state.weather;
 export const selectWeatherDetails = createSelector(
   currentWeatherDetails,
@@ -24,14 +25,12 @@ export const selectWeatherDetails = createSelector(
     if (!allCityWeather.loading) {
       const weatherDetailsArray = [];
       allCityWeather.weather.forEach(element => {
-        if (element.cod === 200) {
-          const obj: CityWeather = {
-            name: element.name,
-            avgTemp: ((element.main.temp_max + element.main.temp_min) / 2).toFixed(2),
-            windStrength: element.wind.speed
-          };
-          weatherDetailsArray.push(obj);
-        }
+        const obj: CityWeather = {
+          name: element.name,
+          avgTemp: ((element.main.temp_max + element.main.temp_min) / 2).toFixed(2),
+          windStrength: element.wind.speed
+        };
+        weatherDetailsArray.push(obj);
       });
       return weatherDetailsArray;
     } else {
@@ -39,6 +38,9 @@ export const selectWeatherDetails = createSelector(
     }
   }
 );
+
+
+// to parse data for the grids from the complete JSON (Hourly Weather report)
 export const currentHourlyWeatherDetails = (state: AppState) => state.hourlyWeather;
 export const hourlyWeatherDetails = createSelector(
   currentHourlyWeatherDetails,

@@ -17,16 +17,41 @@ import {
 import {
   MatProgressBarModule
 } from '@angular/material/progress-bar';
+import {
+  DataGridComponent
+} from './components/data-grid/data-grid.component';
+import {
+  MatCardModule
+} from '@angular/material/card';
+import {
+  MatTableModule
+} from '@angular/material/table';
+import {
+  MatSelectModule
+} from '@angular/material/select';
+import {
+  MatButtonModule
+} from '@angular/material/button';
+import {
+  MatPaginatorModule
+} from '@angular/material/paginator';
 describe('AppComponent', () => {
   beforeEach(async (() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes(routes),
-        MatProgressBarModule
+        MatProgressBarModule,
+        MatSelectModule,
+        MatTableModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        MatPaginatorModule,
+        MatCardModule
       ],
       declarations: [
         AppComponent,
-        WeatherReportComponent
+        WeatherReportComponent,
+        DataGridComponent
       ],
     }).compileComponents();
   }));

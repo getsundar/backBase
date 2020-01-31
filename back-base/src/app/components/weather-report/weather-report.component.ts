@@ -38,7 +38,7 @@ import {
   styleUrls: ['./weather-report.component.scss']
 })
 export class WeatherReportComponent implements OnInit, OnDestroy {
-  weatherDetails$: Observable < CityWeather > ;
+  weatherDetails$: Observable < any > ;
   hourlyWeatherDetails$: Observable < any > ;
   hourlyWeatherShown = false;
   displayedWeatherColumns: ColumnProp[] = WEATHER_COLUMNS;
@@ -48,6 +48,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
   weatherSubscription;
   hourlyWeatherSubscription;
   errorMessage = '';
+  inValidCities = [];
   constructor(private store: Store < AppState > ) {}
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());

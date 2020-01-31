@@ -8,7 +8,7 @@ import {
 
 
 export interface WeatherState {
-  weather: any;
+  weather: Weather[];
   loading: boolean;
   error: Error;
 }

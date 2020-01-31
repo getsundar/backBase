@@ -13,6 +13,9 @@ import {
 import {
   CITY_NAMES
 } from 'src/assets/constants';
+import {
+  map
+} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +26,8 @@ export class WeatherService {
     CITY_NAMES.forEach((city) => {
       citiesToLoad.push(this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=' + city));
     });
-    return forkJoin(citiesToLoad);
+    return forkJoin(citiesToLoad).pipe(map((data: Weather[]) => {
+      return data.filter(cityWeather => cityWeather.cod === 200);
+    }));
   }
 }
