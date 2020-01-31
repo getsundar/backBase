@@ -8,14 +8,25 @@ import {
 import {
   AppComponent
 } from './app.component';
+import {
+  routes
+} from './app-routing.module';
+import {
+  WeatherReportComponent
+} from './components/weather-report/weather-report.component';
+import {
+  MatProgressBarModule
+} from '@angular/material/progress-bar';
 describe('AppComponent', () => {
   beforeEach(async (() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule.withRoutes(routes),
+        MatProgressBarModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        WeatherReportComponent
       ],
     }).compileComponents();
   }));
@@ -33,6 +44,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to back-base!');
+    expect(compiled.querySelector('h1').textContent).toContain('Weather Report');
   });
 });

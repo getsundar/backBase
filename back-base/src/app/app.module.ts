@@ -50,15 +50,16 @@ import {
 import {
   DataGridComponent
 } from './components/data-grid/data-grid.component';
-import {
-  WeatherReportComponent
-} from './components/weather-report/weather-report/weather-report.component';
+
 import {
   MatPaginatorModule
 } from '@angular/material/paginator';
 import {
   MatCardModule
 } from '@angular/material/card';
+import {
+  WeatherReportComponent
+} from './components/weather-report/weather-report.component';
 @NgModule({
   declarations: [
     AppComponent,

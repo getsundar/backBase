@@ -7,17 +7,15 @@ import {
 } from '@angular/router';
 import {
   WeatherReportComponent
-} from './components/weather-report/weather-report/weather-report.component';
+} from './components/weather-report/weather-report.component';
 
-const routes: Routes = [{
+export const routes: Routes = [{
   path: '',
   component: WeatherReportComponent
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    enableTracing: true
-  })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

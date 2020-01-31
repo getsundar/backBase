@@ -1,16 +1,22 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
 
-import { DataGridComponent } from './data-grid.component';
+import {
+  DataGridComponent
+} from './data-grid.component';
 
 describe('DataGridComponent', () => {
   let component: DataGridComponent;
-  let fixture: ComponentFixture<DataGridComponent>;
+  let fixture: ComponentFixture < DataGridComponent > ;
 
-  beforeEach(async(() => {
+  beforeEach(async (() => {
     TestBed.configureTestingModule({
-      declarations: [ DataGridComponent ]
-    })
-    .compileComponents();
+        declarations: [DataGridComponent]
+      })
+      .compileComponents();
   }));
 
   beforeEach(() => {
