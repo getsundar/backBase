@@ -7,9 +7,7 @@ import {
   Store
 } from '@ngrx/store';
 import {
-  AppState,
-  selectWeatherDetails,
-  hourlyWeatherDetails
+  AppState
 } from 'src/app/models/app-state.model';
 import {
   LoadWeatherAction
@@ -30,6 +28,10 @@ import {
   WEATHER_COLUMNS,
   HOURLY_WEATHER_COLUMNS
 } from 'src/assets/constants';
+import {
+  selectWeatherDetails,
+  hourlyWeatherDetails
+} from 'src/app/shared/selectors/selectors';
 @Component({
   selector: 'app-weather-report',
   templateUrl: './weather-report.component.html',
