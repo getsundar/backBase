@@ -45,6 +45,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
   citySelected = '';
   weatherSubscription;
   hourlyWeatherSubscription;
+  errorMessage = '';
   constructor(private store: Store < AppState > ) {}
   ngOnInit() {
     this.store.dispatch(new LoadWeatherAction());
@@ -54,6 +55,7 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
     });
   }
   onShowingHourlyDetails(cityNameToGetDetails) {
+    this.errorMessage = '';
     this.citySelected = cityNameToGetDetails;
     this.dataLoading = true;
     this.store.dispatch(new LoadHourlyWeatherAction({
@@ -61,9 +63,14 @@ export class WeatherReportComponent implements OnInit, OnDestroy {
     }));
     this.hourlyWeatherDetails$ = this.store.select(hourlyWeatherDetails);
     this.hourlyWeatherSubscription = this.store.select('hourlyWeather').subscribe((hourlyWeatherData) => {
-      this.dataLoading = hourlyWeatherData.loading;
-      if (!this.dataLoading) {
-        this.hourlyWeatherShown = true;
+      if (!hourlyWeatherData.error) {
+        this.dataLoading = hourlyWeatherData.loading;
+        if (!this.dataLoading) {
+          this.hourlyWeatherShown = true;
+        }
+      } else {
+        this.errorMessage = hourlyWeatherData.error.message;
+        this.dataLoading = false;
       }
     });
   }

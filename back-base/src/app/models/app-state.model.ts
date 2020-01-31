@@ -26,12 +26,14 @@ export const selectWeatherDetails = createSelector(
     if (!allCityWeather.loading) {
       const weatherDetailsArray = [];
       allCityWeather.weather.forEach(element => {
-        const obj: CityWeather = {
-          name: element.name,
-          avgTemp: ((element.main.temp_max + element.main.temp_min) / 2).toFixed(2),
-          windStrength: element.wind.speed
-        };
-        weatherDetailsArray.push(obj);
+        if (element.cod === 200) {
+          const obj: CityWeather = {
+            name: element.name,
+            avgTemp: ((element.main.temp_max + element.main.temp_min) / 2).toFixed(2),
+            windStrength: element.wind.speed
+          };
+          weatherDetailsArray.push(obj);
+        }
       });
       return weatherDetailsArray;
     } else {

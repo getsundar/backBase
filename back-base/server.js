@@ -6,18 +6,12 @@ const port = 9000;
 const app = express();
 const cors = require('cors');
 app.use(cors());
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World\n');
-// });
 
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 app.get('/getWeatherData', (req, res) => {
-  console.log("cityName::" + req.query.cityName);
   http.get('http://api.openweathermap.org/data/2.5/weather?q=' + req.query.cityName + '&appid=3d8b309701a13f65b660fa2c64cdc517', (resp) => {
     let data = '';
 
