@@ -19,9 +19,6 @@ import {
   Observable
 } from 'rxjs';
 import {
-  CityWeather
-} from 'src/app/models/city-weather.model';
-import {
   ColumnProp
 } from 'src/app/models/column-prop.model';
 import {

@@ -60,6 +60,9 @@ import {
 import {
   WeatherReportComponent
 } from './components/weather-report/weather-report.component';
+import {
+  SharedService
+} from './shared/selectors/services/shared.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +86,7 @@ import {
     MatPaginatorModule,
     MatCardModule
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

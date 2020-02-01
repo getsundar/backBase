@@ -7,14 +7,22 @@ import {
 import {
   HourlyWeather
 } from '../models/hourly-weather.model';
+import {
+  catchError
+} from 'rxjs/operators';
+import {
+  SharedService
+} from '../shared/selectors/services/shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HourlyWeatherService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sharedService: SharedService) {}
   getHourlyWeatherDetails(cityDetails) {
-    return this.http.get < HourlyWeather > ('http://localhost:9000/getHourlyWeatherData?cityName=' + cityDetails.cityName + '\'');
+    return this.http.get < HourlyWeather > ('http://localhost:9000/getHourlyWeatherData?cityName=' + cityDetails.cityName + '\'').pipe(
+      catchError(this.sharedService.handleError)
+    );
   }
 }

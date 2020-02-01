@@ -2,32 +2,41 @@ import {
   Injectable
 } from '@angular/core';
 import {
-  HttpClient
+  HttpClient,
+  HttpErrorResponse
 } from '@angular/common/http';
 import {
   Weather
 } from '../models/weather.model';
 import {
-  forkJoin
+  forkJoin,
+  throwError
 } from 'rxjs';
 import {
   CITY_NAMES
 } from 'src/assets/constants';
 import {
-  map
+  map,
+  catchError
 } from 'rxjs/operators';
+import {
+  SharedService
+} from '../shared/selectors/services/shared.service';
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private sharedService: SharedService) {}
   getWeatherData() {
     const citiesToLoad = [];
     CITY_NAMES.forEach((city) => {
-      citiesToLoad.push(this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=' + city));
+      citiesToLoad.push(this.http.get < Weather > ('http://localhost:9000/getWeatherData?cityName=' + city).pipe(
+        catchError(this.sharedService.handleError)
+      ));
     });
     return forkJoin(citiesToLoad).pipe(map((data: Weather[]) => {
       return data.filter(cityWeather => cityWeather.cod === 200);
     }));
   }
+
 }
